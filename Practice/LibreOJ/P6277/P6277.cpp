@@ -8,7 +8,7 @@ struct block{
     int start;
     int end;
     int lazy;
-}b[250];
+}b[500];
 
 int n;
 int a[55000],f[55000];
@@ -27,9 +27,10 @@ int main()
     for(int i=1;i<=block_num;i++)
     {
         b[i].start=i*block_size+1;
-        b[i].end=min(b[i].start+block_size-1,n);
+        b[i].end=i*block_size;
         b[i].lazy=0;
     }
+    b[block_num].end=n;
 
     for(int i=1;i<=n;i++)
         f[i]=(i-1)/block_size+1;
@@ -59,9 +60,7 @@ void modify(int l,int r,int c)
     if(f[l]==f[r])  // in the same block
     {
         for(int i=l;i<=r;i++)
-        {
             a[i]+=c;
-        }
         return;
     }
     // in different blocks
