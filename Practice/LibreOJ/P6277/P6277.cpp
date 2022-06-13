@@ -8,7 +8,6 @@ struct block{
     int start;
     int end;
     int lazy;
-    int sum;
 }b[250];
 
 int n;
@@ -25,19 +24,18 @@ int main()
     block_num=(n+block_size-1)/block_size;
 
     // block init.
-    for(int i=0;i<block_num;i++)
+    for(int i=1;i<=block_num;i++)
     {
         b[i].start=i*block_size+1;
         b[i].end=min(b[i].start+block_size-1,n);
         b[i].lazy=0;
-        b[i].sum=0;
     }
 
     for(int i=1;i<=n;i++)
         f[i]=(i-1)/block_size+1;
 
     for(int i=1;i<=n;i++)
-        cin>>a[i],b[f[i]].sum+=a[i];
+        cin>>a[i];
 
     for(int i=0;i<n;i++)
     {
@@ -45,7 +43,7 @@ int main()
         cin>>opt>>l>>r>>c;
         if(opt) // opt==1
         {
-            cout<<a[r];
+            cout<<a[r]+b[f[r]].lazy;
         }
         else    // opt==0
         {
@@ -63,7 +61,6 @@ void modify(int l,int r,int c)
         for(int i=l;i<=r;i++)
         {
             a[i]+=c;
-            b[f[l]].sum+=c;
         }
         return;
     }
@@ -73,14 +70,12 @@ void modify(int l,int r,int c)
     for(int i=l;i<=b[f[l]].end;i++)
     {
         a[i]+=c;
-        b[f[l]].sum+=c;
     }
 
     // r's box
     for(int i=b[f[r]].start;i<=r;i++)
     {
         a[i]+=c;
-        b[f[r]].sum+=c;
     }
 
     // mid boxes
