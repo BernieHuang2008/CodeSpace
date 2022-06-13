@@ -15,6 +15,8 @@ int n;
 int a[55000],f[55000];
 int block_size,block_num;
 
+void modify(int,int,int);
+
 int main()
 {
     cin>>n;
@@ -47,7 +49,44 @@ int main()
         }
         else    // opt==0
         {
-            
+            modify(l,r,c);
         }
     }
+}
+
+
+
+void modify(int l,int r,int c)
+{
+    if(f[l]==f[r])  // in the same block
+    {
+        for(int i=l;i<=r;i++)
+        {
+            a[i]+=c;
+            b[f[l]].sum+=c;
+        }
+        return;
+    }
+    // in different blocks
+
+    // l's box
+    for(int i=l;i<=b[f[l]].end;i++)
+    {
+        a[i]+=c;
+        b[f[l]].sum+=c;
+    }
+
+    // r's box
+    for(int i=b[f[r]].start;i<=r;i++)
+    {
+        a[i]+=c;
+        b[f[r]].sum+=c;
+    }
+
+    // mid boxes
+    for(int i=f[l]+1;i<f[r];i++)
+    {
+        b[i].lazy+=c;
+    }
+    
 }
