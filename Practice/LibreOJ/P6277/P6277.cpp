@@ -43,7 +43,7 @@ int main()
         cin>>opt>>l>>r>>c;
         if(opt) // opt==1
         {
-            cout<<a[r]+b[f[r]].lazy;
+            cout<<a[r]+b[f[r]].lazy<<endl;
         }
         else    // opt==0
         {
