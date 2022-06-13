@@ -38,14 +38,6 @@ void modify(int x,int y,long long k)
         b[f[y]].sum+=k;
 }
 
-long long bsum(int i)
-{
-    long long s;
-    for(int i=b[i].start;i<=b[i].end;i++)
-        s+=a[i];
-    return s;
-}
-
 long long query(int x,int y)
 {
     long long s=0;
