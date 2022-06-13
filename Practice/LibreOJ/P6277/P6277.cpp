@@ -26,7 +26,7 @@ int main()
     // block init.
     for(int i=1;i<=block_num;i++)
     {
-        b[i].start=i*block_size+1;
+        b[i].start=(i-1)*block_size+1;
         b[i].end=i*block_size;
         b[i].lazy=0;
     }
