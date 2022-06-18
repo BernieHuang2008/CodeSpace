@@ -9,12 +9,13 @@ int main()
     while(cmd!=""||cmd!="exit")
     {
         cout<<t::get()<<endl;
-        cout<<"          ________________________"<<endl;
-        cout<<"COMMAND: |________________________|\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b";
+        cout<<"          ________________________________________________"<<endl;
+        cout<<"COMMAND: |________________________________________________|\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b";
         ch=getch();
         if(ch==13)
         {
-            cout<<t::get()<<endl;
+            cout<<"exit"<<endl;
+            exit(0);
         }
         cmd+=ch;
     }
