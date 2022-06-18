@@ -20,19 +20,6 @@ int main()
     char ch;
     while(cmd!=""||cmd!="exit")
     {
-        /*t::reset();
-        cout<<t::get()<<endl<<endl<<endl;
-        cout<<"------------------------command------------------------"<<endl;
-        showHistory();
-        cout<<"          ____________________________________________"<<endl;
-        cout<<"COMMAND: |"<<cmd;
-		if(cmd.length()<=44)
-            for(int j=0;j<44-cmd.length();j++)   cout<<"_";
-        cout<<"|";
-		if(cmd.length()<=44)
-            for(int j=0;j<44-cmd.length();j++)   cout<<"\b";
-        cout<<"\b";
-        ch=getch();*/
         bool a=true;
         while(ch!=13||a)
         {
@@ -87,12 +74,12 @@ void History(string cmd)
     history[9]=cmd;
 }
 
-void GotoXY(int x, int y)  // ÒÆ¶¯ 
+void GotoXY(int x, int y)  // ï¿½Æ¶ï¿½ 
 {
- HANDLE hout;  //ÆÁÄ»³ß´ç ±äÁ¿ 
- COORD coord={x,y};  //¹â±ê×ø±ê ±äÁ¿  ¹â±êx±ê  ¹â±êy±ê 
- hout=GetStdHandle(STD_OUTPUT_HANDLE);  //»ñµÃÆÁÄ»³ß´ç 
- SetConsoleCursorPosition(hout,coord);  //ÒÆ¶¯¹â±ê 
+ HANDLE hout;  //ï¿½ï¿½Ä»ï¿½ß´ï¿½ ï¿½ï¿½ï¿½ï¿½ 
+ COORD coord={x,y};  //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½  ï¿½ï¿½ï¿½xï¿½ï¿½  ï¿½ï¿½ï¿½yï¿½ï¿½ 
+ hout=GetStdHandle(STD_OUTPUT_HANDLE);  //ï¿½ï¿½ï¿½ï¿½ï¿½Ä»ï¿½ß´ï¿½ 
+ SetConsoleCursorPosition(hout,coord);  //ï¿½Æ¶ï¿½ï¿½ï¿½ï¿½ 
 }
 
 void help()
