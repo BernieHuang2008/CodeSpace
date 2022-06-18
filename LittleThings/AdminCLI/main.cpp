@@ -46,8 +46,6 @@ int main()
         }
         cmd=cmd.substr(0,cmd.length()-1);
         History(cmd);
-//        cout<<cmd.length();
-//        system("pause");
         comm(cmd);
         cmd="";
     }
