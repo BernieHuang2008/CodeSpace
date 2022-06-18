@@ -16,5 +16,11 @@ namespace t
 	int mon()	{return localtm.tm_mon+1;}
 	int day()	{return localtm.tm_mday;}
 	string get(){return asctime(&localtm);}
+	void reset()
+	{
+		rawtime = time(NULL);
+		localtm = *localtime(&rawtime);
+		UTCtm = *gmtime(&rawtime);
+	}
 }
 #endif
