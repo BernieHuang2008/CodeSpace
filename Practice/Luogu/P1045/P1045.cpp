@@ -1,7 +1,7 @@
 #include<iostream>
 using namespace std;
 
-class verylong{
+typedef class verylong{
     #define MAXLEN 11000
     int a[MAXLEN];
     int len;
