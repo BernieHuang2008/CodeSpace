@@ -1,7 +1,7 @@
 #include<iostream>
 using namespace std;
 
-typedef class verylong{
+class verylong{
     #define MAXLEN 11000
     int a[MAXLEN];
     int len;
@@ -95,7 +95,7 @@ int main()
     cout<<a.length()<<endl;
     // a.output(100);
     // cout<<endl;
-    a.output(500);
-    cout<<endl<<endl;
+    // a.output(500);
+    // cout<<endl<<endl;
     a.output2();
 }
