@@ -93,9 +93,5 @@ int main()
         a*=2;
 
     cout<<a.length()<<endl;
-    // a.output(100);
-    // cout<<endl;
-    // a.output(500);
-    // cout<<endl<<endl;
     a.output2();
 }
