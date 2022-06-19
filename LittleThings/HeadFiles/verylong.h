@@ -1,5 +1,6 @@
+#ifndef VERYLONG_H
+#define VERYLONG_H
 #include<iostream>
-using namespace std;
 
 class verylong{
     #define MAXLEN 11000
@@ -13,7 +14,7 @@ class verylong{
         for(int i=0;i<len;i++)
             a[len-i-1]=number[i]-'0';
     }
-    void input(string number){
+    void input(std::string number){
         len=number.length();
         for(int i=0;i<len;i++)
             a[len-i-1]=number[i]-'0';
@@ -24,18 +25,10 @@ class verylong{
     }
     void output(int num){
         for(int i=1;i<=num;i++)
-            cout<<a[num-i];
+            std::cout<<a[num-i];
     }
-    void output2(){
-        for(int i=1;i<500;i++)
-        {
-            cout<<a[500-i];
-            if(i%50==0) cout<<endl;
-        }
-        cout<<a[0]-1;
-    }
-    string tostring(){
-        string s;
+    std::string tostring(){
+        std::string s;
         for(int i=len-1;i>=0;i--)
             s+=a[i]+'0';
         return s;
@@ -65,16 +58,16 @@ class verylong{
         for(int i=0;i<len;i++)
             a[i]=c[i];
     }
-    void operator= (string b){
+    void operator= (std::string b){
         input(b);
     }
 };
 
-istream &operator >> (istream &in,verylong &number){
+std::istream &operator >> (std::istream &in,verylong &number){
     number.input();
     return in;
 }
-ostream &operator << (ostream &out,verylong &number){
+std::ostream &operator << (std::ostream &out,verylong &number){
     out<<number.tostring();
     return out;
 }
@@ -82,20 +75,4 @@ verylong &operator *= (verylong &number,int b){
     number.multself(b);
     return number;
 }
-
-int main()
-{
-    verylong a;
-    a="1";
-    int p;
-    cin>>p;
-    for(int i=0;i<p;i++)
-        a*=2;
-
-    cout<<a.length()<<endl;
-    // a.output(100);
-    // cout<<endl;
-    a.output(500);
-    cout<<endl<<endl;
-    a.output2();
-}
+#endif // VERYLONG_H
