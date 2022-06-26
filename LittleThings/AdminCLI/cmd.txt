@@ -1,1 +1,1 @@
-0011 echo Hello,World>temp\\output
+0011 return hello world
