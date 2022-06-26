@@ -113,23 +113,19 @@ void modify(int l,int r,int w)
         for(int i=l;i<=r;i++)    a[i]+=w;
         for(int i=b[f[l]].s;i<=b[f[l]].e;i++)    a1[i]=a[i];
         sort(a1+b[f[l]].s,a1+b[f[l]].e+1);
+        return;
     }
 
-    else
-    {
-        for(int i=l;i<=b[f[l]].e;i++)   a[i]+=w;
-        for(int i=b[f[l]].s;i<=b[f[l]].e;i++)   a1[i]=a[i];
-        sort(a1+b[f[l]].s,a1+b[f[l]].e+1);
+    for(int i=l;i<=b[f[l]].e;i++)    a[i]+=w;
+    for(int i=b[f[l]].s;i<=b[f[l]].e;i++)   a1[i]=a[i];
+    sort(a1+b[f[l]].s,a1+b[f[l]].e+1);
+    
+    for(int i=b[f[r]].s;i<=r;i++)   a[i]+=w;
+    for(int i=b[f[r]].s;i<=b[f[r]].e;i++)   a1[i]=a[i];
+    sort(a1+b[f[r]].s,a1+b[f[r]].e+1);
 
-        
-        for(int i=b[f[r]].s;i<=r;i++)   a[i]+=w;
-        for(int i=b[f[r]].s;i<=b[f[r]].e;i++)   a1[i]=a[i];
-        sort(a1+b[f[r]].s,a1+b[f[r]].e+1);
-
-
-        for(int i=f[l]+1;i<f[r];i++)
-            b[i].lazy+=w;
-    }
+    for(int i=f[l]+1;i<f[r];i++)
+        b[i].lazy+=w;
 
     return;
 }
