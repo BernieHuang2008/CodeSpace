@@ -1,114 +1,65 @@
 #include<iostream>
 #include<math.h>
+#include<algorithm>
 using namespace std;
-int n,b_num,b_size;
-int a[55000];
 
-struct block{
-    int s;
-    int e;
+const int NA=55000;
+const int NB=300;
+int a[NA],a1[NA],f[NA];
+int n;
+int block, num;
+
+
+struct blk{
+    int l,r;
     int lazy;
-    int max=-1;
-    int min=1000000;
-}b[300];
+}b[NB];
 
-int f[55000];
 
-int small(int,int,long long);
+int found(int,int,long long);
 void add(int,int,int);
+
 
 int main()
 {
+    freopen("P6278.in","r",stdin);
+
     cin>>n;
+    for(int i=1;i<=n;i++)
+        cin>>a[i];
 
-    b_size=(int)sqrt(n);
-    b_num=(n+b_size-1)/b_size;
+    block=(int)sqrt(n);
+    num=(n-1)/block+1;
 
-    for(int i=1;i<=b_num;i++)
+    for(int i=1;i<=num;i++)
     {
-        b[i].s=(i-1)*b_size+1;
-        b[i].e=i*b_size;
+        b[i].l=(i-1)*block+1;
+        b[i].r=i*block+1;
         b[i].lazy=0;
     }
-    b[b_num].e=n;
+    b[num].r=n;
 
     for(int i=1;i<=n;i++)
-        cin>>a[i],
-        f[i]=(i-1)/b_size+1,
-        b[f[i]].max=max(b[f[i]].max,a[i]),
-        b[f[i]].min=min(b[f[i]].min,a[i]);
+        f[i]=(i-1)/block+1;
 
-    
+    for(int i=1;i<=num;i++)
+    {
+        for(int j=b[i].l;j<=b[i].r;j++)    a1[i]=a[i];
+        sort(a1+b[i].l,a1+b[i].r+1);
+    }
+
     for(int i=0;i<n;i++)
     {
-        bool opt;
-        int l,r,c;
+        int opt,l,r,c;
         cin>>opt>>l>>r>>c;
-        if(opt)
-            cout<<small(l,r,c*c)<<endl;
+        if(opt) // opt==1  ->  found
+        {
+            cout<<found(l,r,c*c);
+        }
         else
+        {
             add(l,r,c);
-    }
-}
-
-int small(int l,int r,long long c2)
-{
-    int ans=0;
-    if(f[l]==f[r])
-    {
-        for(int i=l;i<=r;i++)
-        {
-            if(a[i]<c2)
-                ans++;
         }
-        return ans;
-    }
 
-    // l box
-    for(int i=l;i<=b[f[l]].e;i++)
-    {
-        if(a[i]<c2)
-            ans++;
     }
-    // r box
-    for(int i=b[f[r]].s;i<=r;i++)
-    {
-        if(a[i]<c2)
-            ans++;
-    }
-
-    // mid box
-
-    for(int i=f[l]+1;i<f[r];i++)
-    {
-        if(b[i].max+b[i].lazy<c2)
-            ans+=b[i].e-b[i].s+1;
-        else if(b[i].min+b[i].lazy>c2)
-            continue;
-        else
-        {
-            for(int j=b[i].s;j<=b[i].e;j++)
-            {
-                if(a[j]<c2)
-                    ans++;
-            }
-        }
-    }
-    return ans;
-}
-
-void add(int l,int r,int c)
-{
-    if(f[l]==f[r])
-    {
-        for(int i=l;i<=r;i++)
-            a[i]+=c;
-        return;
-    }
-    for(int i=l;i<=b[f[l]].e;i++)
-        a[i]+=c;
-    for(int i=b[f[r]].s;i<=r;i++)
-        a[i]+=c;
-    for(int i=f[l]+1;i<f[r];i++)
-        b[i].lazy+=c;
 }
