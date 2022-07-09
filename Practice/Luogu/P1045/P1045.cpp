@@ -1,3 +1,4 @@
+#include<math.h>
 #include<iostream>
 using namespace std;
 
@@ -65,6 +66,13 @@ class verylong{
         for(int i=0;i<len;i++)
             a[i]=c[i];
     }
+    void cut(int num){
+        if(num<0)
+            return;
+        for(int i=num;i<=len;i++)
+            a[i]=0;
+        len=num;
+    }
     void operator= (string b){
         input(b);
     }
@@ -89,9 +97,10 @@ int main()
     a="1";
     int p;
     cin>>p;
+    int m=(int)(p*log(2)/log(10))+1;
     for(int i=0;i<p;i++)
-        a*=2;
+        a*=2,a.cut(500);
 
-    cout<<a.length()<<endl;
+    cout<<m<<endl;
     a.output2();
 }
