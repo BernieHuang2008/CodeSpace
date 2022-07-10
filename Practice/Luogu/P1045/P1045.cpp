@@ -6,6 +6,74 @@ class verylong{
     #define MAXLEN 11000
     int a[MAXLEN];
     int len;
+    private:
+    void multself_one(int b)
+    {
+        int c[len];
+        c[0]=0;
+        for(int i=0;i<len;i++)
+        {
+            c[i]+=a[i]*b;
+            c[i+1]=c[i]/10;
+            c[i]%=10;
+        }
+        len++;
+        while(c[len-1]>0)
+        {
+            c[len]=c[len-1]/10;
+            c[len-1]%=10;
+            len++;
+        }
+
+        while(len>1 and c[len-1]==0)
+            len--;
+        for(int i=0;i<len;i++)
+            a[i]=c[i];
+    }
+    verylong mult_one(int b)
+    {
+        int al = len;
+        int c[len];
+        c[0]=0;
+        for(int i=0;i<len;i++)
+        {
+            c[i]+=a[i]*b;
+            c[i+1]=c[i]/10;
+            c[i]%=10;
+        }
+        len++;
+        while(c[len-1]>0)
+        {
+            c[len]=c[len-1]/10;
+            c[len-1]%=10;
+            len++;
+        }
+
+        while(len>1 and c[len-1]==0)
+            len--;
+        
+        verylong ans;
+        int d[MAXLEN]={len};
+        len = al;
+        for(int i=0;i<d[0];i++)
+            d[i+1]=c[i];
+        ans=d;
+        return ans;
+    }
+    void multself_many(int b_)
+    {
+        // string b=to_string(b_);
+        // for(int i=0)
+    }
+    verylong mult_many(int b_)
+    {
+        // string b=to_string(b_);
+        // for(int i=0)
+    }
+    void multself_many(verylong b)
+    {
+        return;
+    }
     public:
     void input(){
         std::string number;
@@ -44,27 +112,21 @@ class verylong{
     int length(){
         return len;
     }
+    void setlength(int l){
+        len=l;
+    }
     void multself(int b){
-        int c[len];
-        c[0]=0;
-        for(int i=0;i<len;i++)
-        {
-            c[i]+=a[i]*b;
-            c[i+1]=c[i]/10;
-            c[i]%=10;
-        }
-        len++;
-        while(c[len-1]>0)
-        {
-            c[len]=c[len-1]/10;
-            c[len-1]%=10;
-            len++;
-        }
-
-        while(len>1 and c[len-1]==0)
-            len--;
-        for(int i=0;i<len;i++)
-            a[i]=c[i];
+        if(b<10)
+            return multself_one(b);
+        return multself_many(b);
+    }
+    verylong mult(int b){
+        if(b<10)
+            return mult_one(b);
+        return mult_many(b);
+    }
+    void multself(verylong b){
+        multself_many(b);
     }
     void cut(int num){
         if(num<0)
@@ -75,6 +137,11 @@ class verylong{
     }
     void operator= (string b){
         input(b);
+    }
+    void operator= (int b[]){
+        for(int i=0;i<b[0];i++)
+            a[i]=b[i+1];
+        len = b[0];
     }
 };
 
@@ -90,11 +157,14 @@ verylong &operator *= (verylong &number,int b){
     number.multself(b);
     return number;
 }
+verylong &operator * (verylong &number,int b){
+    verylong ans=number.mult(b);
+    return ans;
+}
 
 int main()
 {
     verylong a;
-    a="1";
     int p;
     cin>>p;
     int m=(int)(p*log(2)/log(10))+1;
