@@ -56,7 +56,8 @@
         "utility": "cpp",
         "typeindex": "cpp",
         "typeinfo": "cpp",
-        "valarray": "cpp"
+        "valarray": "cpp",
+        "cs50.h": "c"
     },
     "C_Cpp.errorSquiggles": "Enabled"
 }
