@@ -11,13 +11,13 @@ void qsort1(int l, int r){
 	
 	
 	while (i<j){
-		//1��
+		// 1 left
 		while (j>i and a[j]>x)--j;
 		a[k]=a[j]; k=j; 
-		if (i>=j) break;	// stop immedietly
+		if (i>=j) break;	// stop i
 		i++; 
 		
-		//2�� 
+		// 2 right
 		while (i<j and a[i]<x)++i;
 		a[k]=a[i]; k=i; 
 		if (i>=j) break;
