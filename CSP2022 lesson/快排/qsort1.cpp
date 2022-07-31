@@ -1,9 +1,8 @@
-#include <cstdio>
-#include <cstdlib>
-#include <ctime>
+#include <stdio.h>
 
-const int N = 110000;
-int a[N], n;
+const int N = 11000;
+int a[N]={0,4,7,3,6,9,2,5};
+int n=6;
 
 void qsort1(int l, int r){
 	
@@ -11,19 +10,18 @@ void qsort1(int l, int r){
 	int i=l, j=r, k=l;
 	
 	
-	//
 	while (i<j){
-		//1ÓÒ
+		//1ï¿½ï¿½
 		while (j>i and a[j]>x)--j;
-		a[k]=a[j]; ++i; 
-		k=j;
-		if (i==j) break;
+		a[k]=a[j]; k=j; 
+		if (i>=j) break;	// stop immedietly
+		i++; 
 		
-		//2×ó 
+		//2ï¿½ï¿½ 
 		while (i<j and a[i]<x)++i;
-		a[k]=a[i]; --j;
-		k=i; 
-		if (i==j) break;
+		a[k]=a[i]; k=i; 
+		if (i>=j) break;
+		j--;
 	}
 	
 	a[i]=x;
@@ -36,19 +34,16 @@ void qsort1(int l, int r){
 }
 
 int main(){
-	srand(time(0));
-	
-	n=6;
-	for (int i=1; i<=n; ++i) a[i]=rand()%10;
+	n=7;
 	for (int i=1; i<=n; ++i) printf("%d ", a[i]);
 	printf("\n");
 	
-	//¿ìËÙÅÅÐò sort
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ sort
 	 
 	qsort1(1, n);
 	
 	
-	for (int i=1; i<=n; ++i) printf("%d ", a[i]);
+	for (int i=1; i<=n; ++i) printf("%d ",a[i]);
 	printf("\n");
 
 	
